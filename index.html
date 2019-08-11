@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="vehicles.css">
+</head>
+<body>
+<div class="container vehicles" ng-app="vehicles" ng-controller="vehiclesCtrl as ctrl">
+
+    <form class="form-inline">
+        <div class="form-group mr-sm-5">
+            <label for="selectedVehicleType" class="col-form-label">Vehicle Type</label>
+            <select id="selectedVehicleType" class="form-control"
+                    ng-model="ctrl.selectedVehicleType"
+                    ng-options="o as o for o in ctrl.vehicleTypes">
+            </select>
+        </div>
+        <div class="form-group mr-sm-5">
+            <label for="vehicleName" class="mr-sm-1">Name</label>
+            <input type="text" class="form-control" id="vehicleName" ng-model="ctrl.vehicleName">
+        </div>
+        <button type="submit" class="btn btn-outline-primary" ng-click="ctrl.create()">Create</button>
+    </form>
+
+    <div ng-if="ctrl.vehiclesList.length" class="vehicles-list">
+        <h5>Vehicles list</h5>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="vehicle in ctrl.vehiclesList">
+                I am {{vehicle.name}} a {{vehicle.type}} with {{vehicle.wheels}} wheels and {{vehicle.seats}} seats!
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+<script src="vehicle.js"></script>
+</body>
+</html>
